@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+	<meta name = "viewport" content = "width = device-width, initial-scale = 1.0, maximum-scale = 1.0, user-scalable = 0"/>
+	<meta name="renderer" content="webkit"/>
+	<meta http-equiv="X-UA-Compatible" content="IE=Edge"/>
+</head>
+<script>
+	window.addEventListener("DOMContentLoaded",function(){
+		var btn=document.querySelectorAll(".btn");
+		var tu=document.querySelectorAll(".tu");
+		for (var i = 0; i < btn.length; i++) {
+			btn[i].index=i;
+			btn[0].style.background="pink";
+			btn[i].addEventListener('touchstart',function(){
+				for (var j = 0; j < tu.length; j++) {
+					tu[j].style.zIndex=0;
+					btn[j].style.background="";
+				};
+				tu[this.index].style.zIndex=1;
+				btn[this.index].style.background="pink";
+			})
+		};
+		
+	})
+</script>
+<style>
+	.box{
+		width: 300px;
+		height: 200px;
+		border: 1px solid #000;
+		margin: 0 auto;
+		position: relative;
+	}
+	.tubox{
+		width: 300px;
+		height: 180px;
+		background: #f00;
+	}
+	.tu{
+		width: 300px;
+		height: 180px;
+		background: #0f0;
+		position: absolute;
+		left: 0;
+		top: 0;
+		text-align: center;
+		line-height: 180px;
+	}
+	.tu:nth-child(1){
+		z-index: 1;
+	}
+	.btn-box{
+		width: 300px;height: 20px;
+	}
+	.btn{
+		width: 33.333333333%;
+		height: 20px;
+		float: left;
+		background: blue;
+		text-align: center;
+	}
+</style>
+<body>
+	<div class="box">
+		<div class="tubox">
+			<div class="tu">1</div>
+			<div class="tu">2</div>
+			<div class="tu">3</div>
+		</div>
+		<div class="btn-box">
+			<div class="btn">1</div>
+			<div class="btn">2</div>
+			<div class="btn">3</div>
+		</div>
+	</div>
+</body>
+</html>

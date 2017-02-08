@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+	<meta name = "viewport" content = "width = device-width, initial-scale = 1.0, maximum-scale = 1.0, user-scalable = 0"/>
+	<meta name="renderer" content="webkit"/>
+	<meta http-equiv="X-UA-Compatible" content="IE=Edge"/>
+</head>
+<style>
+	body{
+		margin:0;
+	}
+	html,body{
+		width: 100%;
+		height: 100%;
+	}
+	.box{
+		width: 100%;
+		height: 100%;
+		overflow: hidden;
+	}
+	.btn-box{
+		width: 100%;
+		height: 80px;
+		background: yellow;
+		position: absolute;
+		bottom: 0;
+		left: 0;
+		z-index: 999999;
+	}
+	.btn-box>div{
+		width: 33.333333%;
+		height: 100%;
+		float: left;
+		line-height: 80px;
+		text-align: center;
+	}
+	.active{
+		background: #55f;
+	}
+	.tu-box{
+		width: 300%;
+		transition: all .5s;
+	}
+	.tu{
+		width: 33.33333%;
+		height: 100%;
+		text-align: center;
+		font-size: 50px;
+		float: left;
+		padding-top: 100px;
+	}
+	.tu:nth-child(1){
+		background: green;
+	}
+	.tu:nth-child(2){
+		background: blue;
+	}
+	.tu:nth-child(3){
+		background: red;
+	}
+</style>
+<body>
+	<div class="box">
+		<div class="btn-box">
+			<div class="active">1</div>
+			<div>2</div>
+			<div>3</div>
+		</div>
+		<div class="tu-box">
+			<div class="tu">1</div>
+			<div class="tu">2</div>
+			<div class="tu">3</div>
+		</div>
+	</div>
+	<script>
+	var btn=document.querySelectorAll(".btn-box>div");
+	var tubox=document.querySelector(".tu-box");
+	var box=document.querySelector(".box");
+	var btnbox=document.querySelector(".btn-box");
+	var btnHeight=btnbox.offsetHeight;
+	tubox.style.height=document.documentElement.clientHeight-btnHeight+"px";
+	for (var i = 0; i < btn.length; i++) {
+		btn[i].index=i;
+		btn[i].addEventListener("touchstart",function(){
+			tubox.style.transform="translate3d("+this.index*-33.33333+"%,0,0)"
+			for (var j = 0; j < btn.length; j++) {
+				btn[j].className="";
+			};
+			btn[this.index].className="active";
+		});
+		
+	};
+	</script>
+</body>
+</html>
